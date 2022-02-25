@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hucoulon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/25 14:36:49 by hucoulon          #+#    #+#             */
+/*   Updated: 2022/02/25 14:36:52 by hucoulon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -92,5 +103,6 @@ void        do_wall(t_data *data);
 void        do_floor(t_data *data);
 void        do_pce(t_data *data);
 int     free_game(t_data *data);
+int     check_name(char* str);
 
 #endif

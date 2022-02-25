@@ -1,11 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hucoulon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/25 14:35:44 by hucoulon          #+#    #+#             */
+/*   Updated: 2022/02/25 14:35:48 by hucoulon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../include/so_long.h"
 
 int     main(int argc, char **argv)
 {
     t_data  data; 
-
-//   if (argc != 2 || (check_map_file(argv[1])) == 0)
-    if (argc != 2)
+    if (argc !=2 || (check_name(argv[1])) == 0)
     {
         printf("Error\nWrong Argument\n");
         return (0);

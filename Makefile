@@ -3,13 +3,12 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fasi-moh <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: hucoulon <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/11/17 16:32:56 by fasi-moh          #+#    #+#              #
-#    Updated: 2021/11/17 16:33:53 by fasi-moh         ###   ########.fr        #
+#    Created: 2022/02/25 14:36:24 by hucoulon          #+#    #+#              #
+#    Updated: 2022/02/25 14:36:30 by hucoulon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 SRCS		=		./srcs/main.c\
 					./srcs/parser_map.c\
 					./srcs/window_size.c\
