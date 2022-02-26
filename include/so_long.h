@@ -87,7 +87,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char *s1, char *s2);
 int		get_next_line(int fd, char **line);
 int		parser_map(char *str, t_map *map);
-int		window_size(t_data *data);
+void	window_size(t_data *data);
 void	get_texture(t_data *data);
 void	do_map(t_data *data);
 int		keyboard_gestion(int touch, t_data *data);

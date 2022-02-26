@@ -25,11 +25,7 @@ int	main(int argc, char **argv)
 		printf("Error\nMap Error\n");
 		return (0);
 	}
-	if ((window_size(&data)) == 0)
-	{
-		printf("Error\nMap Size Error\n");
-		return (0);
-	}
+	window_size(&data);
 	do_map(&data);
 	return (0);
 }

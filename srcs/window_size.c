@@ -11,8 +11,11 @@
 /* ************************************************************************** */
 #include "../include/so_long.h"
 
-int	window_size(t_data *data)
+void	window_size(t_data *data)
 {
+	int	i;
+
+	i = 0;
 	data->w_r = 64;
 	data->w_w = (data->map.len * data->w_r);
 	data->w_h = (data->map.line * data->w_r);
@@ -22,9 +25,14 @@ int	window_size(t_data *data)
 		data->w_w = (data->map.len * data->w_r);
 		data->w_h = (data->map.line * data->w_r);
 		if (data->w_w > 1600 || data->w_h > 960)
-			return (0);
+		{
+			while (data->map.map[i])
+				free(data->map.map[i++]);
+			free(data->map.map);
+			printf("Error\nMap Size Error\n");
+			exit(1);
+		}
 	}
-	return (1);
 }
 
 int	check_name(char *str)

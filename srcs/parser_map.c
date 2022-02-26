@@ -32,6 +32,8 @@ int	make_data_map(int fd, t_map *map)
 	}
 	map->line = nb_line;
 	map->len = len;
+	if (map->line < 2 || map->len < 2)
+		return (0);
 	return (1);
 }
 
@@ -134,6 +136,7 @@ int	parser_map(char *str, t_map *map)
 		while (map->map[i])
 			free(map->map[i++]);
 		free(map->map);
+		printf("Error\nMap Error\n");
 		exit(1);
 	}
 	return (1);
