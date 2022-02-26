@@ -9,37 +9,36 @@
 #    Updated: 2022/02/25 14:36:30 by hucoulon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-SRCS		=		./srcs/main.c\
-					./srcs/parser_map.c\
-					./srcs/window_size.c\
-					./srcs/get_texture.c\
-					./srcs/do_map.c\
-					./srcs/keyboard_actions.c\
-					./srcs/get_next_line.c\
-					./srcs/get_next_line_utils.c\
+SRCS		= $(wildcard ./srcs/*.c)
 
-OBJS 		= ${SRCS:.c=.o}
+OBJS		= ${SRCS:.c=.o}
 
-UNAME		:= $(shell uname)
-PATH_MLX	= mlx
-CC 			= clang
-CFLAGS		= -Wall -Wextra -Werror
-RM			= rm -f
 NAME		= so_long
-FLAGS		= -ldl -Imlx -Lmlx -lmlx -lm -lbsd -lXext -lX11
 
-all: 		${NAME}
+MLX_PATH	= ./mlx/
+MLX_NAME	= $(MLX_PATH)libmlx_Linux.a
+
+INC		= ./inc/
+
+CC		= gcc -Wall -Werror -Wextra -g
+RM		= rm -f
+
+CFLAGS		= -lm -lmlx -lXext -lX11
+
+all:		${NAME}
 
 .c.o:
-			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+		${CC} -I${INC} -I${MLX_PATH} -c $< -o ${<:.c=.o}
 
-$(NAME): 	$(OBJS)
-			${CC} $(CFLAGS) -o $(NAME) $(OBJS) $(FLAGS)
+$(NAME):	${OBJS}
+		make -C ${MLX_PATH}
+		${CC} ${OBJS} ${MLX_NAME} -L${MLX_PATH} -I${INC} -I${MLX_PATH} ${CFLAGS} -o${NAME}
 
-clean:
-			${RM} ${OBJS}
+clean:		
+		make clean -C ${MLX_PATH}
+		${RM} ${OBJS}
 
-fclean: 	clean
-			${RM} ${NAME}
+fclean:		clean
+		${RM} ${NAME}
 
-re: 		fclean all
+re:		fclean all
