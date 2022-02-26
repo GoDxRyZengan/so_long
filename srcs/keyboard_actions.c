@@ -11,87 +11,111 @@
 /* ************************************************************************** */
 #include "../include/so_long.h"
 
-int     keyboard_action(int touch, t_data *data)
+int	keyboard_d(t_data *data)
 {
-    if (touch == 65307)
-        return (free_game(data));
-    if (touch == 100)
-    {
-        if (data->map.map[data->map.player.p_y][data->map.player.p_x + 1] != '1')
-        {
-            if ((data->map.map[data->map.player.p_y][data->map.player.p_x + 1] == 'E') && (data->map.player.nb_coll_get != data->map.exit.nb_coll_to_get))
-                return (0);
-            else if ((data->map.map[data->map.player.p_y][data->map.player.p_x + 1] == 'E') && (data->map.player.nb_coll_get == data->map.exit.nb_coll_to_get))
-                return (free_game(data));
-            mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->texture.floor, ((data->map.player.p_x) * (data->win_ratio)), ((data->map.player.p_y) * (data->win_ratio)));
-            if (data->map.map[data->map.player.p_y][data->map.player.p_x + 1] == 'C')
-                data->map.player.nb_coll_get++;
-            mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->texture.player, ((data->map.player.p_x + 1) * (data->win_ratio)), ((data->map.player.p_y) * (data->win_ratio)));
-            data->map.map[data->map.player.p_y][data->map.player.p_x] = '0';
-            data->map.map[data->map.player.p_y][data->map.player.p_x + 1] = 'P';
-            data->map.player.p_x = data->map.player.p_x + 1;
-            data->map.player.move = data->map.player.move + 1;
-        }
-    }
-    if (touch == 97)
-    {
-        if (data->map.map[data->map.player.p_y][data->map.player.p_x - 1] != '1')
-        {
-            if ((data->map.map[data->map.player.p_y][data->map.player.p_x - 1] == 'E') && (data->map.player.nb_coll_get != data->map.exit.nb_coll_to_get))
-                return (0);
-            else if ((data->map.map[data->map.player.p_y][data->map.player.p_x - 1] == 'E') && (data->map.player.nb_coll_get == data->map.exit.nb_coll_to_get))
-                return (free_game(data));
-            mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->texture.floor, ((data->map.player.p_x) * (data->win_ratio)), ((data->map.player.p_y) * (data->win_ratio)));
-            if (data->map.map[data->map.player.p_y][data->map.player.p_x - 1] == 'C')
-                data->map.player.nb_coll_get++;
-            mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->texture.floor, ((data->map.player.p_x) * (data->win_ratio)), ((data->map.player.p_y) * (data->win_ratio)));
-            mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->texture.player, ((data->map.player.p_x - 1) * (data->win_ratio)), ((data->map.player.p_y) * (data->win_ratio)));
-            data->map.map[data->map.player.p_y][data->map.player.p_x] = '0';
-            data->map.map[data->map.player.p_y][data->map.player.p_x - 1] = 'P';
-            data->map.player.p_x = data->map.player.p_x - 1;
-            data->map.player.move = data->map.player.move + 1;
-        }
-    }
-    if (touch == 119)
-    {
-        if (data->map.map[data->map.player.p_y - 1][data->map.player.p_x] != '1')
-        {
-            if ((data->map.map[data->map.player.p_y - 1][data->map.player.p_x] == 'E') && (data->map.player.nb_coll_get != data->map.exit.nb_coll_to_get))
-                return (0);
-            else if ((data->map.map[data->map.player.p_y - 1][data->map.player.p_x] == 'E') && (data->map.player.nb_coll_get == data->map.exit.nb_coll_to_get))
-                return (free_game(data));
-            mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->texture.floor, ((data->map.player.p_x) * (data->win_ratio)), ((data->map.player.p_y) * (data->win_ratio)));
-            if (data->map.map[data->map.player.p_y - 1][data->map.player.p_x] == 'C')
-                data->map.player.nb_coll_get++;
-            mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->texture.floor, ((data->map.player.p_x) * (data->win_ratio)), ((data->map.player.p_y) * (data->win_ratio)));
-            mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->texture.player, ((data->map.player.p_x) * (data->win_ratio)), ((data->map.player.p_y - 1) * (data->win_ratio)));
-            data->map.map[data->map.player.p_y][data->map.player.p_x] = '0';
-            data->map.map[data->map.player.p_y - 1][data->map.player.p_x] = 'P';
-            data->map.player.p_y = data->map.player.p_y - 1;
-            data->map.player.move = data->map.player.move + 1;
-        }
-    }
-    if (touch == 115)
-    {
-        if (data->map.map[data->map.player.p_y + 1][data->map.player.p_x] != '1')
-        {
-            if ((data->map.map[data->map.player.p_y + 1][data->map.player.p_x] == 'E') && (data->map.player.nb_coll_get != data->map.exit.nb_coll_to_get))
-                return (0);
-            else if ((data->map.map[data->map.player.p_y + 1][data->map.player.p_x] == 'E') && (data->map.player.nb_coll_get == data->map.exit.nb_coll_to_get))
-                return (free_game(data));
-            mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->texture.floor, ((data->map.player.p_x) * (data->win_ratio)), ((data->map.player.p_y) * (data->win_ratio)));
-            if (data->map.map[data->map.player.p_y + 1][data->map.player.p_x] == 'C')
-                data->map.player.nb_coll_get++;
-            mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->texture.floor, ((data->map.player.p_x) * (data->win_ratio)), ((data->map.player.p_y) * (data->win_ratio)));
-            mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->texture.player, ((data->map.player.p_x) * (data->win_ratio)), ((data->map.player.p_y + 1) * (data->win_ratio)));
-            data->map.map[data->map.player.p_y][data->map.player.p_x] = '0';
-            data->map.map[data->map.player.p_y][data->map.player.p_x] = 'P';
-            data->map.player.p_y = data->map.player.p_y + 1;
-            data->map.player.move = data->map.player.move + 1;
-        }
-    }
-    if (data->map.player.nb_coll_get == data->map.exit.nb_coll_to_get)
-        mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->texture.exit_open, ((data->map.exit.e_x) * (data->win_ratio)), ((data->map.exit.e_y) * (data->win_ratio)));
-    printf("Move : %d\n", data->map.player.move);
-    return(0);
+	if (data->map.map[data->map.p.p_y][data->map.p.p_x + 1] != '1')
+	{
+		if ((data->map.map[data->map.p.p_y][data->map.p.p_x + 1] == 'E')
+				&& (data->map.p.n_c_g != data->map.exit.n_c_t_g))
+			return (0);
+		else if ((data->map.map[data->map.p.p_y][data->map.p.p_x + 1] == 'E')
+				&& (data->map.p.n_c_g == data->map.exit.n_c_t_g))
+			return (free_game(data));
+		mlx_put_image_to_window(data->m_p, data->w_p, data->tex.f, ((data->map.p.p_x) * (data->w_r)), ((data->map.p.p_y) * (data->w_r)));
+		if (data->map.map[data->map.p.p_y][data->map.p.p_x + 1] == 'C')
+			data->map.p.n_c_g++;
+		mlx_put_image_to_window(data->m_p, data->w_p, data->tex.p, ((data->map.p.p_x + 1) * (data->w_r)), ((data->map.p.p_y) * (data->w_r)));
+		data->map.map[data->map.p.p_y][data->map.p.p_x] = '0';
+		data->map.map[data->map.p.p_y][data->map.p.p_x + 1] = 'P';
+		data->map.p.p_x = data->map.p.p_x + 1;
+		data->map.p.move = data->map.p.move + 1;
+		printf("Move : %d\n", data->map.p.move);
+	}
+	return (0);
+}
+
+int	keyboard_a(t_data *data)
+{
+	if (data->map.map[data->map.p.p_y][data->map.p.p_x - 1] != '1')
+	{
+		if ((data->map.map[data->map.p.p_y][data->map.p.p_x - 1] == 'E')
+				&& (data->map.p.n_c_g != data->map.exit.n_c_t_g))
+			return (0);
+		else if ((data->map.map[data->map.p.p_y][data->map.p.p_x - 1] == 'E')
+				&& (data->map.p.n_c_g == data->map.exit.n_c_t_g))
+			return (free_game(data));
+		mlx_put_image_to_window(data->m_p, data->w_p, data->tex.f, ((data->map.p.p_x) * (data->w_r)), ((data->map.p.p_y) * (data->w_r)));
+		if (data->map.map[data->map.p.p_y][data->map.p.p_x - 1] == 'C')
+			data->map.p.n_c_g++;
+		mlx_put_image_to_window(data->m_p, data->w_p, data->tex.p, ((data->map.p.p_x - 1) * (data->w_r)), ((data->map.p.p_y) * (data->w_r)));
+		data->map.map[data->map.p.p_y][data->map.p.p_x] = '0';
+		data->map.map[data->map.p.p_y][data->map.p.p_x - 1] = 'P';
+		data->map.p.p_x = data->map.p.p_x - 1;
+		data->map.p.move = data->map.p.move + 1;
+		printf("Move : %d\n", data->map.p.move);
+	}
+	return (0);
+}
+
+int	keyboard_w(t_data *data)
+{
+	if (data->map.map[data->map.p.p_y - 1][data->map.p.p_x] != '1')
+	{
+		if ((data->map.map[data->map.p.p_y - 1][data->map.p.p_x] == 'E')
+				&& (data->map.p.n_c_g != data->map.exit.n_c_t_g))
+			return (0);
+		else if ((data->map.map[data->map.p.p_y - 1][data->map.p.p_x] == 'E')
+				&& (data->map.p.n_c_g == data->map.exit.n_c_t_g))
+			return (free_game(data));
+		mlx_put_image_to_window(data->m_p, data->w_p, data->tex.f, ((data->map.p.p_x) * (data->w_r)), ((data->map.p.p_y) * (data->w_r)));
+		if (data->map.map[data->map.p.p_y - 1][data->map.p.p_x] == 'C')
+			data->map.p.n_c_g++;
+		mlx_put_image_to_window(data->m_p, data->w_p, data->tex.p, ((data->map.p.p_x) * (data->w_r)), ((data->map.p.p_y - 1) * (data->w_r)));
+		data->map.map[data->map.p.p_y][data->map.p.p_x] = '0';
+		data->map.map[data->map.p.p_y - 1][data->map.p.p_x] = 'P';
+		data->map.p.p_y = data->map.p.p_y - 1;
+		data->map.p.move = data->map.p.move + 1;
+		printf("Move : %d\n", data->map.p.move);
+	}
+	return (0);
+}
+
+int	keyboard_s(t_data *data)
+{
+	if (data->map.map[data->map.p.p_y + 1][data->map.p.p_x] != '1')
+	{
+		if ((data->map.map[data->map.p.p_y + 1][data->map.p.p_x] == 'E')
+				&& (data->map.p.n_c_g != data->map.exit.n_c_t_g))
+			return (0);
+		else if ((data->map.map[data->map.p.p_y + 1][data->map.p.p_x] == 'E')
+				&& (data->map.p.n_c_g == data->map.exit.n_c_t_g))
+			return (free_game(data));
+		mlx_put_image_to_window(data->m_p, data->w_p, data->tex.f, ((data->map.p.p_x) * (data->w_r)), ((data->map.p.p_y) * (data->w_r)));
+		if (data->map.map[data->map.p.p_y + 1][data->map.p.p_x] == 'C')
+			data->map.p.n_c_g++;
+		mlx_put_image_to_window(data->m_p, data->w_p, data->tex.p, ((data->map.p.p_x) * (data->w_r)), ((data->map.p.p_y + 1) * (data->w_r)));
+		data->map.map[data->map.p.p_y][data->map.p.p_x] = '0';
+		data->map.map[data->map.p.p_y][data->map.p.p_x] = 'P';
+		data->map.p.p_y = data->map.p.p_y + 1;
+		data->map.p.move = data->map.p.move + 1;
+		printf("Move : %d\n", data->map.p.move);
+	}
+	return (0);
+}
+
+int	keyboard_gestion(int touch, t_data *data)
+{
+	if (touch == 65307)
+		return (free_game(data));
+	if (touch == 100)
+		keyboard_d(data);
+	if (touch == 97)
+		keyboard_a(data);
+	if (touch == 119)
+		keyboard_w(data);
+	if (touch == 115)
+		keyboard_s(data);
+	if (data->map.p.n_c_g == data->map.exit.n_c_t_g)
+		mlx_put_image_to_window(data->m_p, data->w_p, data->tex.e_o, ((data->map.exit.e_x) * (data->w_r)), ((data->map.exit.e_y) * (data->w_r)));
+	return(0);
 }
