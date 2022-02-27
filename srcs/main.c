@@ -17,12 +17,12 @@ int	main(int argc, char **argv)
 
 	if (argc != 2 || (check_name(argv[1])) == 0)
 	{
-		printf("Error\nWrong Argument\n");
+		write(1, "Error\nWrong Argument\n", 21);
 		return (0);
 	}
 	if ((parser_map(argv[1], &data.map)) == 0)
 	{
-		printf("Error\nMap Error\n");
+		write(1, "Error\nMap Error\n", 16);
 		return (0);
 	}
 	window_size(&data);

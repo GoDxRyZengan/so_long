@@ -29,12 +29,36 @@ void	window_size(t_data *data)
 			while (data->map.map[i])
 				free(data->map.map[i++]);
 			free(data->map.map);
-			printf("Error\nMap Size Error\n");
+			write(1, "Error\nMap Size Error\n", 21);
 			exit(1);
 		}
 	}
 }
 
+char	*rev(char *str)
+{
+	int i;
+	int	j;
+	char	*buff;
+
+	j = 0;
+	i = 0;
+	while (str[i])
+		i++;
+	buff = malloc(sizeof(char) * (i + 1));
+	if (!buff)
+		return (NULL);
+	i--;
+	while (i > 0)
+	{
+		buff[j] = str[i];
+		j++;
+		i--;
+	}
+	buff[j] = '\0';
+	return (buff);
+}
+//ERREUR
 int	check_name(char *str)
 {
 	int	i;
@@ -42,15 +66,21 @@ int	check_name(char *str)
 	i = 0;
 	while (str[i])
 		i++;
-	i = i - 4;
-	if (str[i] == '.')
+	if (i < 4)
+		return (0);
+	str = rev(str);
+	i = 0;
+	if (str[i] == 'r')
 	{
-		if (str[i + 1] == 'b')
+		if (str[i + 1] == 'e')
 		{
-			if (str[i + 2] == 'e')
+			if (str[i + 2] == 'b')
 			{
-				if (str[i + 3] == 'r')
-					return (1);
+				if (str[i + 3] == '.')
+				{
+					if (str[i + 4] != '\0' || str[i + 4] != '/')
+						return (1);
+				}
 			}
 		}
 	}

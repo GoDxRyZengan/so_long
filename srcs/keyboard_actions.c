@@ -33,6 +33,7 @@ int	keyboard_d(t_data *data)
 		data->map.map[data->map.p.p_y][data->map.p.p_x + 1] = 'P';
 		data->map.p.p_x = data->map.p.p_x + 1;
 		data->map.p.move = data->map.p.move + 1;
+		write(1, "Move : %d\n", 16);
 		printf("Move : %d\n", data->map.p.move);
 	}
 	return (0);

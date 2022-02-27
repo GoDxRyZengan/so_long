@@ -136,7 +136,7 @@ int	parser_map(char *str, t_map *map)
 		while (map->map[i])
 			free(map->map[i++]);
 		free(map->map);
-		printf("Error\nMap Error\n");
+		write(1, "Error\nMap Error\n", 16);
 		exit(1);
 	}
 	return (1);
