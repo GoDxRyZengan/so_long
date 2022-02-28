@@ -15,24 +15,26 @@ int	make_data_map(int fd, t_map *map)
 {
 	char	*line;
 	int		ret;
-	int		len;
-	int		nb_line;
+	int		c_l;
 
+	c_l = 0;
 	line = NULL;
-	nb_line = 0;
-	len = 0;
+	map->line = 0;
+	map->len = 0;
 	ret = 1;
 	while (ret != 0)
 	{
 		ret = get_next_line(fd, &line);
-		if (len < ft_strlen(line))
-			len = ft_strlen(line);
-		nb_line++;
+		if (map->len != ft_strlen(line))
+		{
+			if (map->len < ft_strlen(line))
+				map->len = ft_strlen(line);
+			c_l++;
+		}
+		map->line++;
 		free(line);
 	}
-	map->line = nb_line;
-	map->len = len;
-	if (map->line < 2 || map->len < 2)
+	if (map->line < 2 || map->len < 2 || c_l > 1)
 		return (0);
 	return (1);
 }
@@ -136,7 +138,7 @@ int	parser_map(char *str, t_map *map)
 		while (map->map[i])
 			free(map->map[i++]);
 		free(map->map);
-		write(1, "Error\nMap Error\n", 16);
+		ft_printf("Error\nMap Error\n");
 		exit(1);
 	}
 	return (1);

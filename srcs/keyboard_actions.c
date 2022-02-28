@@ -33,8 +33,7 @@ int	keyboard_d(t_data *data)
 		data->map.map[data->map.p.p_y][data->map.p.p_x + 1] = 'P';
 		data->map.p.p_x = data->map.p.p_x + 1;
 		data->map.p.move = data->map.p.move + 1;
-		write(1, "Move : %d\n", 16);
-		printf("Move : %d\n", data->map.p.move);
+		ft_printf("Move : %d\n", data->map.p.move);
 	}
 	return (0);
 }
@@ -61,7 +60,7 @@ int	keyboard_a(t_data *data)
 		data->map.map[data->map.p.p_y][data->map.p.p_x - 1] = 'P';
 		data->map.p.p_x = data->map.p.p_x - 1;
 		data->map.p.move = data->map.p.move + 1;
-		printf("Move : %d\n", data->map.p.move);
+		ft_printf("Move : %d\n", data->map.p.move);
 	}
 	return (0);
 }
@@ -88,7 +87,7 @@ int	keyboard_w(t_data *data)
 		data->map.map[data->map.p.p_y - 1][data->map.p.p_x] = 'P';
 		data->map.p.p_y = data->map.p.p_y - 1;
 		data->map.p.move = data->map.p.move + 1;
-		printf("Move : %d\n", data->map.p.move);
+		ft_printf("Move : %d\n", data->map.p.move);
 	}
 	return (0);
 }
@@ -115,7 +114,7 @@ int	keyboard_s(t_data *data)
 		data->map.map[data->map.p.p_y][data->map.p.p_x] = 'P';
 		data->map.p.p_y = data->map.p.p_y + 1;
 		data->map.p.move = data->map.p.move + 1;
-		printf("Move : %d\n", data->map.p.move);
+		ft_printf("Move : %d\n", data->map.p.move);
 	}
 	return (0);
 }

@@ -17,15 +17,19 @@ int	main(int argc, char **argv)
 
 	if (argc != 2 || (check_name(argv[1])) == 0)
 	{
-		write(1, "Error\nWrong Argument\n", 21);
+		ft_printf("Error\nWrong Argument\n");
 		return (0);
 	}
 	if ((parser_map(argv[1], &data.map)) == 0)
 	{
-		write(1, "Error\nMap Error\n", 16);
+		ft_printf("Error\nMap Error\n");
 		return (0);
 	}
 	window_size(&data);
+	if (data.w_r == 32)
+		check_tex_x32(&data);
+	if (data.w_r == 64)
+		check_tex_x64(&data);
 	do_map(&data);
 	return (0);
 }

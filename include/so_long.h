@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
+# include <stdarg.h>
 
 # define BUFFER_SIZE 42
 
@@ -71,6 +72,7 @@ typedef struct s_texture
 typedef struct s_data
 {
 	int			w_h;
+	int			fd;
 	int			w_w;
 	int			w_r;
 	void		*m_p;
@@ -97,5 +99,7 @@ void	do_pce(t_data *data);
 int		free_game(t_data *data);
 int		check_name(char *str);
 int		fill_data_map(int fd, t_map *map);
-
+int		ft_printf(const char *str, ...);
+void	check_tex_x32(t_data *data);
+void	check_tex_x64(t_data *data);
 #endif

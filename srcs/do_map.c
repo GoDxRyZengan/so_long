@@ -108,18 +108,18 @@ void	do_map(t_data *data)
 	data->m_p = mlx_init();
 	if (data->m_p == NULL)
 	{
-		printf("Error\nMlx Error\n");
+		ft_printf("Error\nMlx Error\n");
 		return ;
 	}
+	get_texture(data);
 	data->w_p = mlx_new_window(data->m_p, data->w_w, data->w_h, "so_long");
 	if (data->w_p == NULL)
 	{
 		free(data->w_p);
 		free(data->m_p);
-		printf("Error\nMlx Error\n");
+		ft_printf("Error\nMlx Error\n");
 		return ;
 	}
-	get_texture(data);
 	do_wall(data);
 	do_floor(data);
 	do_pce(data);
